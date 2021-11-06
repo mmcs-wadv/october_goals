@@ -1,0 +1,15 @@
+{
+  "name": "demo_oct_30",
+  "version": "1.0.0",
+  "description": "Basic demo project for parcel bundler",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "Pavel",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0"
+  }
+}

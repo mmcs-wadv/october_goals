@@ -3,11 +3,22 @@
 <head>
     <title>Promise Demo</title>
     <meta charset="UTF-8" />
-    <script src="./src/index.js"></script>
+    <script src="./src/index.js" type="module"></script>
+    <link href="styles/app.css" rel="stylesheet"/>
 </head>
 
 <body>
- <H1> Update: That is a dynamically changed header</H1>
+<header>
+    <h2>Dashboard</h2>
+</header>
+<div class="container">
+    <aside class="dashboard">
+        <button class="menu-button" id="state1"> State 1 </button>
+        <button class="menu-button" id="dashboard"> Dashboard </button>
+    </aside>
+    <div class="main-area" id="main-area">
 
+    </div>
+</div>
 </body>
 </html>

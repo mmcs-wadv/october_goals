@@ -1,31 +1,21 @@
-const password = 'tzAd3trXSWPLqVX';
-const email = 'gwolwer1ne@gmail.com';
-const api_prefix = 'https://www.myfxbook.com/api/';
-async function getSession(email, password) {
-    const response = await fetch(`${api_prefix}login.json?email=${email}&password=${password}`, {
-        mode: 'cors'
-    });
-    const data = await response.json();
-    //TODO checks for errors
-    return data.session;
+document.addEventListener("DOMContentLoaded", setup);
+function setup() {
+    const mainArea = document.getElementById("main-area");
+    mainArea.innerHTML = "Hello from JavaScript";
+    const state1Button = document.getElementById('state1');
+    const dashboardButton = document.getElementById('dashboard');
+    state1Button.onclick = onStateClicked;
+    dashboardButton.onclick = onDashboardButtonClicked;
 }
-async function getAccountId(session) {
-    const response = await fetch(`${api_prefix}/get-my-accounts.json?session=${session}`, {
-        mode: 'cors'
-    });
-    const data = await response.json();
-    //TODO checks for errors, handle multiple accounts
-    return data.accounts[0].id;
+function onStateClicked() {
+    const mainArea = document.getElementById("main-area");
+    mainArea.innerHTML = "This is state 1";
 }
-getSession(email, password).then((session)=>getAccountId(session).then((accountId)=>{
-        fetch(`${api_prefix}get-daily-gain.json?session=${session}&id=${accountId}&start=2021-10-29&end=2021-10-30`, {
-            mode: 'cors'
-        }).then((response)=>response.json()
-        ).then((json)=>{
-            let dailyGains = json;
-            alert(dailyGains.dailyGain[0].value);
-        });
-    })
-);
+function buildDashboard(mainArea) {
+}
+function onDashboardButtonClicked() {
+    const mainArea = document.getElementById("main-area");
+    buildDashboard(mainArea);
+}
 
 //# sourceMappingURL=index.017db2f2.js.map

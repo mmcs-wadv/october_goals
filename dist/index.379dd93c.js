@@ -488,6 +488,7 @@ var _moneyGoal = require("./money-goal");
 var _moneyGoalDefault = parcelHelpers.interopDefault(_moneyGoal);
 var _placeholder = require("./placeholder");
 var _placeholderDefault = parcelHelpers.interopDefault(_placeholder);
+var _d3 = require("d3");
 class Dashboard {
     constructor(element){
         this.container = element;
@@ -501,10 +502,9 @@ class Dashboard {
             goalComponent.build(300, 300, 75, 500),
             placeholder.build()
         ]);
-        function updateGoal() {
-            goalComponent.update(200);
-        }
-        setTimeout(updateGoal, 2000);
+        _d3.interval(()=>{
+            goalComponent.update(goalComponent.value + Math.round(-40 + 120 * Math.random()));
+        }, 1500);
         this.buildRow(dashboardContainer, [
             placeholder.build(),
             placeholder.build()
@@ -523,7 +523,7 @@ class Dashboard {
 }
 exports.default = Dashboard;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./money-goal":"hrIWY","./placeholder":"dJW7P"}],"ciiiV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./money-goal":"hrIWY","./placeholder":"dJW7P","d3":"97vK6"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -582,10 +582,10 @@ class MoneyGoal {
     update(value) {
         this.value = value;
         const that = this;
-        this.upperground.transition().duration(750).attrTween('d', (d)=>{
-            let compute = _d3.interpolate(d.angle, that.progress());
+        this.upperground.transition().duration(750).attrTween('d', function(d) {
+            let compute = _d3.interpolate(d.endAngle, that.progress());
             return function(t) {
-                d.angle = compute(t);
+                d.endAngle = compute(t);
                 that.dataText.text(that.text());
                 return that.arcGen(d);
             };

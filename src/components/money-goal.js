@@ -44,18 +44,14 @@ class MoneyGoal {
     update(value){
         this.value = value
         const that = this
-        this.upperground
-            .transition()
-            .duration(750)
-            .attrTween('d', (d)=>
-            {
-                let compute = d3.interpolate(d.angle, that.progress())
-                return function(t) {
-                    d.angle = compute(t)
-                    that.dataText.text(that.text())
-                    return that.arcGen(d)
-                }
-            })
+        this.upperground.transition().duration(750).attrTween('d', function (d){
+            let compute = d3.interpolate(d.endAngle, that.progress());
+            return function(t){
+                d.endAngle = compute(t);
+                that.dataText.text(that.text());
+                return that.arcGen(d);
+            }
+        })
     }
 
     text(){

@@ -1,6 +1,6 @@
 import MoneyGoal from "./money-goal";
 import Placeholder from "./placeholder";
-
+import * as d3 from 'd3'
 class Dashboard {
     constructor(element) {
         this.container = element
@@ -16,11 +16,11 @@ class Dashboard {
           75,500),
           placeholder.build()])
 
-        function updateGoal() {
-            goalComponent.update(200)
-        }
 
-        setTimeout(updateGoal, 2000)
+
+        d3.interval(() => {
+            goalComponent.update(goalComponent.value + Math.round(-40 + 120 * Math.random()))
+        }, 1500);
       this.buildRow(dashboardContainer, [placeholder.build(), placeholder.build()])
 
       this.container.innerHTML = ''

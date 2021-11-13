@@ -3,7 +3,7 @@ import Placeholder from "./placeholder";
 
 class Dashboard {
     constructor(element) {
-        self.container = element
+        this.container = element
     }
 
     build(){
@@ -12,11 +12,19 @@ class Dashboard {
       const dashboardContainer = document.createElement('div')
       dashboardContainer.classList.add('dashboard-container')
 
-      this.buildRow(dashboardContainer, [placeholder.build(), placeholder.build()])
+      this.buildRow(dashboardContainer, [goalComponent.build(300, 300,
+          75,500),
+          placeholder.build()])
+
+        function updateGoal() {
+            goalComponent.update(200)
+        }
+
+        setTimeout(updateGoal, 2000)
       this.buildRow(dashboardContainer, [placeholder.build(), placeholder.build()])
 
-      self.container.innerHTML = ''
-      self.container.appendChild(dashboardContainer)
+      this.container.innerHTML = ''
+      this.container.appendChild(dashboardContainer)
     }
 
     buildRow(container, elements){

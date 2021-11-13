@@ -34,7 +34,11 @@ aside.dashboard{
     background: orange;
     margin: 15px;
 }
-
+.dashboard-goal{
+    width: 300px;
+    height: 300px;
+    margin: 15px;
+}
 
 
 

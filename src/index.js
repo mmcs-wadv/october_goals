@@ -1,4 +1,5 @@
 import Dashboard from "./components/dashboard";
+import Weather from "./services/weather";
 
 document.addEventListener("DOMContentLoaded", setup)
 
@@ -12,6 +13,8 @@ function setup(){
     state1Button.onclick = onStateClicked
     dashboardButton.onclick = onDashboardButtonClicked
 
+    const weather = new Weather()
+    weather.getWeather(47.22, 39.63)
 }
 
 

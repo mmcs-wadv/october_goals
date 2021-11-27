@@ -462,6 +462,8 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _dashboard = require("./components/dashboard");
 var _dashboardDefault = parcelHelpers.interopDefault(_dashboard);
+var _weather = require("./services/weather");
+var _weatherDefault = parcelHelpers.interopDefault(_weather);
 document.addEventListener("DOMContentLoaded", setup);
 function setup() {
     const mainArea = document.getElementById("main-area");
@@ -470,6 +472,8 @@ function setup() {
     const dashboardButton = document.getElementById('dashboard');
     state1Button.onclick = onStateClicked;
     dashboardButton.onclick = onDashboardButtonClicked;
+    const weather = new _weatherDefault.default();
+    weather.getWeather(47.22, 39.63);
 }
 function onStateClicked() {
     const mainArea = document.getElementById("main-area");
@@ -481,7 +485,7 @@ function onDashboardButtonClicked() {
     dashboard.build();
 }
 
-},{"./components/dashboard":"bVA3x","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bVA3x":[function(require,module,exports) {
+},{"./components/dashboard":"bVA3x","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./services/weather":"gxlur"}],"bVA3x":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _moneyGoal = require("./money-goal");
@@ -24575,6 +24579,22 @@ class Placeholder {
     }
 }
 exports.default = Placeholder;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gxlur":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Weather {
+    baseUrl = 'https://api.open-meteo.com/v1/forecast?';
+    //47.22, 39.63
+    getWeather(lat, lng) {
+        fetch(this.baseUrl + `latitude=${lat}&longitude=${lng}&hourly=temperature_2m`).then((response)=>{
+            return response.json();
+        }).then((data)=>{
+            console.log(data.hourly.temperature_2m);
+        });
+    }
+}
+exports.default = Weather;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["lBB98","hD4hw"], "hD4hw", "parcelRequire756c")
 
